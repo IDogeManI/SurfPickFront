@@ -1,0 +1,20 @@
+$colors: (
+  "primary": #0d0d0d,
+  "secondary": #35f22e,
+  "error": #2fd929,
+  "info": #24a61f,
+  "secndary2": #d9d9d9,
+);
+$base-padding: 0.75rem;
+$base-margin: 0.75rem;
+
+$base-border-thickness: 1px;
+$base-border-radius: 20px;
+
+$base-box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+
+$base-font-size: 1rem;
+$font-size-sm: $base-font-size * 0.75;
+$font-size-lg: $base-font-size * 1.5;
+$font-size-xl: $base-font-size * 2;
+$font-size-xxl: $base-font-size * 3;
