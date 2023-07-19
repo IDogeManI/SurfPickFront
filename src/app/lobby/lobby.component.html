@@ -1,0 +1,15 @@
+<div class="lobby">
+  <div class="maps">
+    <ng-container *ngFor="let map of lobby.currentLobby.mapsInLobby">
+      <app-lobby-map-card [map]="map"></app-lobby-map-card>
+    </ng-container>
+  </div>
+  <div *ngIf="showLinks==true">
+    <p>{{location.origin+"/?id=1&lobbyId="+ lobby.lobbyId}}</p>
+    <p>{{location.origin+"/?id=2&lobbyId="+ lobby.lobbyId}}</p>
+  </div>
+  <button class="c-button" (click)="showLinks = true" *ngIf="showLinks==false">Show
+    Links</button>
+  <button class="c-button" (click)="showLinks = false" *ngIf="showLinks==true">Hide
+    Links</button>
+</div>

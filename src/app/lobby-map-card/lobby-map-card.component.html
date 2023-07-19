@@ -1,0 +1,15 @@
+<div class="container">
+  <h2 class="name">{{map.name}}</h2>
+  <div class="image">
+    <div class="banned" *ngIf="map.status == 1">Banned</div>
+    <div class="picked" *ngIf="map.status == 2">Picked</div>
+    <div class="decider" *ngIf="map.status == 3">Decider</div>
+    <img src="../../assets/images/surf_utopia.jpg">
+  </div>
+  <p class="tier">Tier {{map.tier}}</p>
+  <p class="server">{{map.server}}</p>
+  <button class="b-button" *ngIf="showBanButton() == true"
+    (click)="onBanButton()">Ban</button>
+  <button class="p-button" *ngIf="showPickButton() == true"
+    (click)="onPickButton()">Pick</button>
+</div>

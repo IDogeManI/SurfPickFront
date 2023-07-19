@@ -1,18 +1,44 @@
-<div class="container">
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam obcaecati ea
-    quibusdam excepturi rem debitis amet consequuntur magnam voluptatibus? Quam
-    recusandae vel fuga dicta eveniet voluptatibus possimus eius minus ea.</p>
-  <p>Lorem
-    ipsum dolor sit amet consectetur adipisicing elit. Ullam obcaecati ea
-    quibusdam excepturi rem debitis amet consequuntur magnam voluptatibus? Quam
-    recusandae vel fuga dicta eveniet voluptatibus possimus eius minus ea.</p>
-  <p>Lorem
-    ipsum dolor sit amet consectetur adipisicing elit. Ullam obcaecati ea
-    quibusdam excepturi rem debitis amet consequuntur magnam voluptatibus? Quam
-    recusandae vel fuga dicta eveniet voluptatibus possimus eius minus ea.</p>
-  <p>Lorem
-    ipsum dolor sit amet consectetur adipisicing elit. Ullam obcaecati ea
-    quibusdam excepturi rem debitis amet consequuntur magnam voluptatibus? Quam
-    recusandae vel fuga dicta eveniet voluptatibus possimus eius minus ea.</p>
-  <button class="c-button">Generate Lobby</button>
+<div class="container" *ngIf="lobby.showLobby==false">
+  <div class="checkboxes">
+    <div class="servers">
+      <label>
+        KSF
+        <input type="checkbox" [(ngModel)]="isKsf">
+      </label>
+      <label>
+        Cybershoke
+        <input type="checkbox" [(ngModel)]="isCybershoke">
+      </label>
+    </div>
+    <div class="servers">
+      <label>Tiers</label>
+      <label>
+        1
+        <input type="checkbox" [(ngModel)]="isT1">
+      </label>
+      <label>
+        2
+        <input type="checkbox" [(ngModel)]="isT2">
+      </label>
+      <label>
+        3
+        <input type="checkbox" [(ngModel)]="isT3">
+      </label>
+      <label>
+        4
+        <input type="checkbox" [(ngModel)]="isT4">
+      </label>
+      <label>
+        5
+        <input type="checkbox" [(ngModel)]="isT5">
+      </label>
+      <label>
+        6
+        <input type="checkbox" [(ngModel)]="isT6">
+      </label>
+    </div>
+  </div>
+  <button class="c-button" (click)="createLobby()">Generate Lobby</button>
+  <p>{{lobby.currentLobby.lobbyId}}</p>
 </div>
+<app-lobby *ngIf="lobby.showLobby==true"></app-lobby>
