@@ -9,7 +9,7 @@ import { LobbyService } from '../lobby.service';
 })
 export class LobbyMapCardComponent {
   constructor(public lobby: LobbyService) {}
-  @Input() map: SurfMapDto = new SurfMapDto('', '', '', 0, 0);
+  @Input() map: SurfMapDto = new SurfMapDto('', '', '', 0, 0, '');
   showBanButton(): boolean {
     return (
       (this.lobby.currentLobby.stage == 1 &&

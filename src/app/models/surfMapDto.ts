@@ -4,6 +4,7 @@ export class SurfMapDto {
     public server: string,
     public imageSrc: string,
     public tier: number,
-    public status: number
+    public status: number,
+    public player: string
   ) {}
 }

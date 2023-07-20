@@ -11,26 +11,79 @@ import { map, mergeMap, retryWhen, timeout, timer } from 'rxjs';
 export class LobbyService {
   private url: string = 'https://localhost:7119/api/lobby';
   public showLobby: boolean = false;
-  public currentLobby: LobbyInfoDto = new LobbyInfoDto('', [], 0);
+  public currentLobby: LobbyInfoDto = new LobbyInfoDto('', [], 0, '', '');
   public errorMessage: string = '';
   public id: string = '';
   public lobbyId: string = '';
   constructor(private httpClient: HttpClient) {}
-  createLobby(
-    predicate: PredicateDto = new PredicateDto(['KSF', 'CyberShoke'], [1, 2, 3])
+  createDuel(
+    predicate: PredicateDto = new PredicateDto(
+      ['KSF', 'CyberShoke'],
+      [1, 2, 3],
+      '',
+      ''
+    )
   ) {
-    this.httpClient.post<LobbyInfoDto>(this.url, predicate).subscribe({
-      next: (res) => {
-        this.currentLobby = res;
-        this.showLobby = true;
-        this.lobbyId = this.currentLobby.lobbyId;
-        this.pingLobby();
-      },
-      error: (err: Error) => {
-        this.errorMessage = err.message;
-        this.showLobby = false;
-      },
-    });
+    this.httpClient
+      .post<LobbyInfoDto>(this.url + '/duel', predicate)
+      .subscribe({
+        next: (res) => {
+          this.currentLobby = res;
+          this.showLobby = true;
+          this.lobbyId = this.currentLobby.lobbyId;
+          this.pingLobby();
+        },
+        error: (err: Error) => {
+          this.errorMessage = err.message;
+          this.showLobby = false;
+        },
+      });
+  }
+  createTournamentBO3(
+    predicate: PredicateDto = new PredicateDto(
+      ['KSF', 'CyberShoke'],
+      [1, 2, 3],
+      '',
+      ''
+    )
+  ) {
+    this.httpClient
+      .post<LobbyInfoDto>(this.url + '/tournamentbo3', predicate)
+      .subscribe({
+        next: (res) => {
+          this.currentLobby = res;
+          this.showLobby = true;
+          this.lobbyId = this.currentLobby.lobbyId;
+          this.pingLobby();
+        },
+        error: (err: Error) => {
+          this.errorMessage = err.message;
+          this.showLobby = false;
+        },
+      });
+  }
+  createTournamentBO5(
+    predicate: PredicateDto = new PredicateDto(
+      ['KSF', 'CyberShoke'],
+      [1, 2, 3],
+      '',
+      ''
+    )
+  ) {
+    this.httpClient
+      .post<LobbyInfoDto>(this.url + '/tournamentbo5', predicate)
+      .subscribe({
+        next: (res) => {
+          this.currentLobby = res;
+          this.showLobby = true;
+          this.lobbyId = this.currentLobby.lobbyId;
+          this.pingLobby();
+        },
+        error: (err: Error) => {
+          this.errorMessage = err.message;
+          this.showLobby = false;
+        },
+      });
   }
   nextStage(mapName: string) {
     this.httpClient
@@ -86,9 +139,12 @@ export class LobbyService {
             for (let j = 0; j < res.mapsInLobby.length; j++)
               if (
                 res.mapsInLobby[j].name == this.currentLobby.mapsInLobby[i].name
-              )
+              ) {
                 this.currentLobby.mapsInLobby[i].status =
                   res.mapsInLobby[j].status;
+                this.currentLobby.mapsInLobby[i].player =
+                  res.mapsInLobby[j].player;
+              }
           this.currentLobby.stage = res.stage;
           this.showLobby = true;
         },
@@ -106,7 +162,7 @@ export class LobbyService {
           res == false
             ? (this.errorMessage = 'Bad Request')
             : (this.errorMessage = '');
-          this.currentLobby = new LobbyInfoDto('', [], 0);
+          this.currentLobby = new LobbyInfoDto('', [], 0, '', '');
           this.lobbyId = '';
           this.id = '';
           this.showLobby = false;

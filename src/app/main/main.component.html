@@ -3,12 +3,16 @@
     <div class="servers">
       <label>
         KSF
-        <input type="checkbox" [(ngModel)]="isKsf">
+        <input type="radio" name="server" value="KSF"
+          [(ngModel)]="server">
       </label>
-      <label>
-        Cybershoke
-        <input type="checkbox" [(ngModel)]="isCybershoke">
-      </label>
+      <div>
+        <label>
+          Cybershoke
+          <input type="radio" name="server" value="Cybershoke"
+            [(ngModel)]="server">
+        </label>
+      </div>
     </div>
     <div class="servers">
       <label>Tiers</label>
@@ -38,7 +42,14 @@
       </label>
     </div>
   </div>
-  <button class="c-button" (click)="createLobby()">Generate Lobby</button>
-  <p>{{lobby.currentLobby.lobbyId}}</p>
+  <div class="players">
+    <input type="text" [(ngModel)]="player1" placeholder="player1">
+    <input type="text" [(ngModel)]="player2" placeholder="player2">
+  </div>
+  <button class="c-button" (click)="createDuel()">Generate Duel</button>
+  <button class="c-button" (click)="createTournamentBO3()">Generate
+    TournamentBO3</button>
+  <button class="c-button" (click)="createTournamentBO5()">Generate
+    TournamentBO5</button>
 </div>
 <app-lobby *ngIf="lobby.showLobby==true"></app-lobby>

@@ -22,7 +22,40 @@
   align-items: center;
   margin: 20px 20px;
   label {
+    position: relative;
+    padding-left: 30px;
+  }
+  label:hover span {
+    background-color: #ccc;
+  }
+
+  label input:checked ~ span {
+    background-color: #2eaadc;
+  }
+  label input:checked ~ span:after {
+    display: block;
+  }
+  label {
     margin: 10px 20px;
+  }
+}
+.players {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  input {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+  }
+  input {
+    border-radius: 10px;
+    border: 1px solid #eee;
+    transition: 0.3s border-color;
+  }
+  input:hover {
+    border: 1px solid #aaa;
   }
 }
 .c-button {

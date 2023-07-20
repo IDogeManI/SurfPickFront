@@ -29,8 +29,10 @@
 .banned {
   position: absolute;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   font-size: 3rem;
   font-weight: bold;
   color: white;
@@ -40,12 +42,21 @@
   width: 200px;
   height: 90px;
   background-color: #d74646;
+  small {
+    font-size: 0.8rem;
+    width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 .picked {
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  flex-direction: column;
   font-size: 3rem;
   font-weight: bold;
   color: white;
@@ -55,6 +66,13 @@
   width: 200px;
   height: 90px;
   background-color: #52d746;
+  small {
+    font-size: 0.8rem;
+    width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 .decider {
   position: absolute;
