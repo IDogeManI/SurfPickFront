@@ -1,55 +1,138 @@
-<div class="container" *ngIf="lobby.showLobby==false">
-  <div class="checkboxes">
-    <div class="servers">
-      <label>
-        KSF
-        <input type="radio" name="server" value="KSF"
-          [(ngModel)]="server">
-      </label>
-      <div>
-        <label>
-          Cybershoke
-          <input type="radio" name="server" value="Cybershoke"
-            [(ngModel)]="server">
-        </label>
+<div class="outerContainer" *ngIf="lobby.showLobby == false">
+  <div class="container">
+    <h2>Create Lobby</h2>
+    <div class="players">
+      <input type="text" [(ngModel)]="player1" placeholder="player1" />
+      <h1>VS</h1>
+      <input type="text" [(ngModel)]="player2" placeholder="player2" />
+    </div>
+    <div class="checkboxes" *ngIf="player2 != '' && player1 != ''">
+      <h2>Pools</h2>
+      <div class="servers">
+        <ng-container
+          *ngFor="let availeblePool of lobby.availablePredicates.pools">
+          <label>
+            {{ availeblePool }}
+            <input
+              type="radio"
+              name="server"
+              [value]="availeblePool"
+              [(ngModel)]="pool"
+              (change)="onChangePool()" />
+            <a [href]="lobby.tablesUrl.get(availeblePool)" target="_blank"
+              *ngIf="lobby.tablesUrl.has(availeblePool)"><img width="18px"
+                height="18px" src="../../assets/linkIcon.png" alt="click"></a>
+          </label>
+        </ng-container>
+      </div>
+      <h2 *ngIf="pool != ''">Tiers</h2>
+      <div class="servers" *ngIf="pool != ''">
+        <ng-container
+          *ngFor="
+            let availableTier of lobby.availablePredicates.tiers[
+              lobby.availablePredicates.pools.indexOf(pool)
+            ];
+            let i = index
+          ">
+          <label>
+            {{ availableTier.toString() }}
+            <input type="checkbox" [(ngModel)]="tiers[i]"
+              (change)="onChangeTier($event)" />
+          </label>
+        </ng-container>
+      </div>
+      <h2 *ngIf="pool != ''&&isShowStyles()">Styles</h2>
+      <div class="servers" *ngIf="pool != ''&&isShowStyles()">
+        <ng-container
+          *ngFor="
+            let availableStyle of lobby.availablePredicates.styles[
+              lobby.availablePredicates.pools.indexOf(pool)
+            ];
+            let i = index
+          ">
+          <label>
+            {{ availableStyle }}
+            <input type="checkbox" [(ngModel)]="styles[i]" />
+          </label>
+        </ng-container>
       </div>
     </div>
-    <div class="servers">
-      <label>Tiers</label>
-      <label>
-        1
-        <input type="checkbox" [(ngModel)]="isT1">
-      </label>
-      <label>
-        2
-        <input type="checkbox" [(ngModel)]="isT2">
-      </label>
-      <label>
-        3
-        <input type="checkbox" [(ngModel)]="isT3">
-      </label>
-      <label>
-        4
-        <input type="checkbox" [(ngModel)]="isT4">
-      </label>
-      <label>
-        5
-        <input type="checkbox" [(ngModel)]="isT5">
-      </label>
-      <label>
-        6
-        <input type="checkbox" [(ngModel)]="isT6">
-      </label>
+    <div class="buttons"
+      *ngIf="player2 != '' && player1 != '' && pool != ''&&isShowButtons()">
+      <button class="c-button" (click)="createDuel()">Generate Duel</button>
+      <button class="c-button" (click)="createTournamentBO3()">
+        Generate TournamentBO3
+      </button>
+      <button class="c-button" (click)="createTournamentBO5()">
+        Generate TournamentBO5
+      </button>
+      <button class="c-button" (click)="createTournamentBO5WithoutReroll()">
+        Generate TournamentBO5 without reroll
+      </button>
     </div>
   </div>
-  <div class="players">
-    <input type="text" [(ngModel)]="player1" placeholder="player1">
-    <input type="text" [(ngModel)]="player2" placeholder="player2">
+  <div class="container">
+    <h1>Lorem ipsum dolor sit amet consectetur adipisicing.</h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti minus,
+      ipsa ratione sed dignissimos aliquam officia corporis dolorem ea tempora
+      ullam. Recusandae, at! Minus temporibus dignissimos alias magnam, quod
+      odio.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti minus,
+      ipsa ratione sed dignissimos aliquam officia corporis dolorem ea tempora
+      ullam. Recusandae, at! Minus temporibus dignissimos alias magnam, quod
+      odio.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos esse
+      nisi omnis deserunt, voluptatem nostrum eligendi eaque nam iusto odio
+      cumque veritatis ducimus. Consequuntur asperiores minima quam vel iure
+      suscipit delectus fugiat! Qui quisquam repellendus earum quae rem deleniti
+      repellat ipsam laboriosam eius recusandae sint, ratione explicabo odit
+      veritatis dolores soluta fugit? Libero voluptate a nisi, impedit
+      doloremque consequuntur dignissimos eius quas molestiae ad id tenetur
+      nesciunt nam culpa dolores assumenda? Distinctio, inventore. Vel atque id
+      placeat accusamus quas! Iste perferendis natus voluptas a cumque
+      asperiores, harum, accusantium dignissimos deleniti temporibus molestias
+      modi omnis labore! Dolor necessitatibus voluptate animi, alias quod illum
+      est nemo praesentium, numquam quae omnis mollitia. Totam explicabo
+      voluptate reprehenderit asperiores inventore mollitia odio facilis fugit
+      odit corrupti sit saepe doloremque doloribus perspiciatis unde,
+      accusantium praesentium itaque quidem animi enim eveniet aliquid quam
+      voluptatum! Nam excepturi quos rem aspernatur hic non cupiditate quam
+      consequatur? Temporibus porro, vero dolores quasi ab adipisci odio unde
+      voluptates dolorum deleniti harum est dolore, id tempore nesciunt
+      perferendis. Recusandae vero enim minima saepe, dolorem quasi. Ullam,
+      officia provident quo voluptas natus repudiandae quibusdam, velit
+      distinctio omnis nam molestias. Temporibus delectus sed, natus quae
+      voluptates ad tempore quam atque quas voluptatem quod rerum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti minus,
+      ipsa ratione sed dignissimos aliquam officia corporis dolorem ea tempora
+      ullam. Recusandae, at! Minus temporibus dignissimos alias magnam, quod
+      odio.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti minus,
+      ipsa ratione sed dignissimos aliquam officia corporis dolorem ea tempora
+      ullam. Recusandae, at! Minus temporibus dignissimos alias magnam, quod
+      odio.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti minus,
+      ipsa ratione sed dignissimos aliquam officia corporis dolorem ea tempora
+      ullam. Recusandae, at! Minus temporibus dignissimos alias magnam, quod
+      odio.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti minus,
+      ipsa ratione sed dignissimos aliquam officia corporis dolorem ea tempora
+      ullam. Recusandae, at! Minus temporibus dignissimos alias magnam, quod
+      odio.
+    </p>
   </div>
-  <button class="c-button" (click)="createDuel()">Generate Duel</button>
-  <button class="c-button" (click)="createTournamentBO3()">Generate
-    TournamentBO3</button>
-  <button class="c-button" (click)="createTournamentBO5()">Generate
-    TournamentBO5</button>
 </div>
-<app-lobby *ngIf="lobby.showLobby==true"></app-lobby>
+<app-lobby *ngIf="lobby.showLobby == true"></app-lobby>

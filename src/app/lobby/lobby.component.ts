@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { LobbyService } from '../lobby.service';
 
 @Component({
@@ -10,4 +10,7 @@ export class LobbyComponent {
   public location: Location = document.location;
   constructor(public lobby: LobbyService) {}
   public showLinks: boolean = false;
+  voteForReroll() {
+    this.lobby.voteForReroll();
+  }
 }

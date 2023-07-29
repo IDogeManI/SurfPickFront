@@ -1,12 +1,36 @@
 <div class="lobby">
+  <div class="players">
+    <h2>{{lobby.currentLobby.player1}}</h2>
+    <h2>VS</h2>
+    <h2>{{lobby.currentLobby.player2}}</h2>
+  </div>
+  <div class="rerolls" *ngIf="lobby.currentLobby.rerollable == true">
+    <div>{{lobby.currentLobby.isPlayer1WantReroll?lobby.currentLobby.player1+" want to reroll":""}}</div>
+    <button class="r-button" (click)="voteForReroll()"
+      *ngIf="lobby.id!=undefined">Reroll</button>
+    <div>{{lobby.currentLobby.isPlayer2WantReroll?lobby.currentLobby.player2+" want to reroll":""}}</div>
+  </div>
   <div class="maps">
     <ng-container *ngFor="let map of lobby.currentLobby.mapsInLobby">
       <app-lobby-map-card [map]="map"></app-lobby-map-card>
     </ng-container>
   </div>
   <div *ngIf="showLinks==true">
-    <p>{{location.origin+"/?id=1&lobbyId="+ lobby.lobbyId}}</p>
-    <p>{{location.origin+"/?id=2&lobbyId="+ lobby.lobbyId}}</p>
+    <div class="link">
+      <p>Spectator: </p>
+      <p>{{location.origin+location.pathname+"/?lobbyId="+
+        lobby.lobbyId}}</p>
+    </div>
+    <div class="link">
+      <p>{{lobby.currentLobby.player1+": "}}</p>
+      <p>{{location.origin+location.pathname+"/?id=1&lobbyId="+
+        lobby.lobbyId}}</p>
+    </div>
+    <div class="link">
+      <p>{{lobby.currentLobby.player2+": "}}</p>
+      <p>{{location.origin+location.pathname+"/?id=2&lobbyId="+
+        lobby.lobbyId}}</p>
+    </div>
   </div>
   <button class="c-button" (click)="showLinks = true" *ngIf="showLinks==false">Show
     Links</button>

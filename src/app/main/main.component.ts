@@ -9,13 +9,9 @@ import { PredicateDto } from '../models/predicateDto';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-  public server: string = 'Cybershoke';
-  public isT1: boolean = true;
-  public isT2: boolean = true;
-  public isT3: boolean = true;
-  public isT4: boolean = false;
-  public isT5: boolean = false;
-  public isT6: boolean = false;
+  public pool: string = '';
+  public styles: boolean[] = [];
+  public tiers: boolean[] = [];
   public player1: string = '';
   public player2: string = '';
   constructor(
@@ -23,6 +19,7 @@ export class MainComponent implements OnInit {
     public activatedRoute: ActivatedRoute
   ) {}
   ngOnInit(): void {
+    this.lobby.getAvailablePredicates();
     this.activatedRoute.queryParams.subscribe({
       next: (params) => {
         this.lobby.id = params['id'];
@@ -37,58 +34,155 @@ export class MainComponent implements OnInit {
       },
     });
   }
+  onChangePool() {
+    this.styles = [];
+    this.tiers = [];
+  }
+  onChangeTier(event: Event) {
+    if (this.tiers[7] == true) {
+      if (this.tiers.filter((x) => x == true).length == 1) {
+        setTimeout(() => {
+          this.tiers[6] = true;
+        }, 100);
+      }
+    }
+  }
+  isShowStyles(): boolean {
+    let tmp: boolean = false;
+    this.tiers.forEach((tier) => {
+      if (tier == true) {
+        tmp = true;
+      }
+    });
+    return tmp;
+  }
+  isShowButtons(): boolean {
+    let tmp: boolean = false;
+    this.styles.forEach((tier) => {
+      if (tier == true) {
+        tmp = true;
+      }
+    });
+    return tmp;
+  }
   createDuel() {
-    let servers: string[] = [];
-    let tiers: number[] = [];
-    servers.push(this.server);
-    if (this.isT1) tiers.push(1);
-    if (this.isT2) tiers.push(2);
-    if (this.isT3) tiers.push(3);
-    if (this.isT4) tiers.push(4);
-    if (this.isT5) tiers.push(5);
-    if (this.isT6) tiers.push(6);
+    let tierToPredicate: string[] = [];
+    this.tiers.forEach((tier, i) => {
+      if (tier) {
+        tierToPredicate.push(
+          this.lobby.availablePredicates.tiers[
+            this.lobby.availablePredicates.pools.indexOf(this.pool)
+          ][i]
+        );
+      }
+    });
+    let stylesToPredicate: string[] = [];
+    this.styles.forEach((style, i) => {
+      if (style) {
+        stylesToPredicate.push(
+          this.lobby.availablePredicates.styles[
+            this.lobby.availablePredicates.pools.indexOf(this.pool)
+          ][i]
+        );
+      }
+    });
     let predicate: PredicateDto = new PredicateDto(
-      servers,
-      tiers,
+      this.pool,
+      tierToPredicate,
+      stylesToPredicate,
       this.player1,
       this.player2
     );
     this.lobby.createDuel(predicate);
   }
   createTournamentBO3() {
-    let servers: string[] = [];
-    let tiers: number[] = [];
-    servers.push(this.server);
-    if (this.isT1) tiers.push(1);
-    if (this.isT2) tiers.push(2);
-    if (this.isT3) tiers.push(3);
-    if (this.isT4) tiers.push(4);
-    if (this.isT5) tiers.push(5);
-    if (this.isT6) tiers.push(6);
+    let tierToPredicate: string[] = [];
+    this.tiers.forEach((tier, i) => {
+      if (tier) {
+        tierToPredicate.push(
+          this.lobby.availablePredicates.tiers[
+            this.lobby.availablePredicates.pools.indexOf(this.pool)
+          ][i]
+        );
+      }
+    });
+    let stylesToPredicate: string[] = [];
+    this.styles.forEach((style, i) => {
+      if (style) {
+        stylesToPredicate.push(
+          this.lobby.availablePredicates.styles[
+            this.lobby.availablePredicates.pools.indexOf(this.pool)
+          ][i]
+        );
+      }
+    });
     let predicate: PredicateDto = new PredicateDto(
-      servers,
-      tiers,
+      this.pool,
+      tierToPredicate,
+      stylesToPredicate,
       this.player1,
       this.player2
     );
     this.lobby.createTournamentBO3(predicate);
   }
   createTournamentBO5() {
-    let servers: string[] = [];
-    let tiers: number[] = [];
-    servers.push(this.server);
-    if (this.isT1) tiers.push(1);
-    if (this.isT2) tiers.push(2);
-    if (this.isT3) tiers.push(3);
-    if (this.isT4) tiers.push(4);
-    if (this.isT5) tiers.push(5);
-    if (this.isT6) tiers.push(6);
+    let tierToPredicate: string[] = [];
+    this.tiers.forEach((tier, i) => {
+      if (tier) {
+        tierToPredicate.push(
+          this.lobby.availablePredicates.tiers[
+            this.lobby.availablePredicates.pools.indexOf(this.pool)
+          ][i]
+        );
+      }
+    });
+    let stylesToPredicate: string[] = [];
+    this.styles.forEach((style, i) => {
+      if (style) {
+        stylesToPredicate.push(
+          this.lobby.availablePredicates.styles[
+            this.lobby.availablePredicates.pools.indexOf(this.pool)
+          ][i]
+        );
+      }
+    });
     let predicate: PredicateDto = new PredicateDto(
-      servers,
-      tiers,
+      this.pool,
+      tierToPredicate,
+      stylesToPredicate,
       this.player1,
       this.player2
     );
     this.lobby.createTournamentBO5(predicate);
+  }
+  createTournamentBO5WithoutReroll() {
+    let tierToPredicate: string[] = [];
+    this.tiers.forEach((tier, i) => {
+      if (tier) {
+        tierToPredicate.push(
+          this.lobby.availablePredicates.tiers[
+            this.lobby.availablePredicates.pools.indexOf(this.pool)
+          ][i]
+        );
+      }
+    });
+    let stylesToPredicate: string[] = [];
+    this.styles.forEach((style, i) => {
+      if (style) {
+        stylesToPredicate.push(
+          this.lobby.availablePredicates.styles[
+            this.lobby.availablePredicates.pools.indexOf(this.pool)
+          ][i]
+        );
+      }
+    });
+    let predicate: PredicateDto = new PredicateDto(
+      this.pool,
+      tierToPredicate,
+      stylesToPredicate,
+      this.player1,
+      this.player2
+    );
+    this.lobby.createTournamentBO5WithoutReroll(predicate);
   }
 }

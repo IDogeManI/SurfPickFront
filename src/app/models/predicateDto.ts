@@ -1,7 +1,8 @@
 export class PredicateDto {
   constructor(
-    public servers: string[],
-    public tiers: number[],
+    public pool: string,
+    public tiers: string[],
+    public styles: string[],
     public player1: string,
     public player2: string
   ) {}

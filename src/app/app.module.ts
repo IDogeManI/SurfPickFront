@@ -9,7 +9,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { LobbyComponent } from './lobby/lobby.component';
 import { LobbyMapCardComponent } from './lobby-map-card/lobby-map-card.component';
-const appRoute: Routes = [{ path: '', component: AppComponent }];
+import { HomeMainComponent } from './home-main/home-main.component';
+const appRoute: Routes = [
+  { path: '', component: HomeMainComponent },
+  { path: 'duel', component: MainComponent },
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +21,7 @@ const appRoute: Routes = [{ path: '', component: AppComponent }];
     MainComponent,
     LobbyComponent,
     LobbyMapCardComponent,
+    HomeMainComponent,
   ],
   imports: [
     BrowserModule,

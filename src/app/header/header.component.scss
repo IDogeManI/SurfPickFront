@@ -1,19 +1,46 @@
 @import "../../variables";
 .navbar {
   background-color: map-get($map: $colors, $key: "primary");
-  padding: $base-padding;
+  padding: 2px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  font-size: $font-size-xl;
+  font-size: 1.3rem;
   position: sticky;
   z-index: 100;
   top: 0;
-  .main {
-    text-decoration: none;
-    outline: none;
-    color: map-get($map: $colors, $key: "secndary2");
-    font-weight: bold;
-  }
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: map-get($map: $colors, $key: "primary");
+}
+li {
+  float: left;
+  margin: 0px 20px 0px 0px;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+  border-radius: 20px;
+}
+.main {
+  text-decoration: none;
+  outline: none;
+  font-weight: bold;
+}
+.createDuel {
+  text-decoration: none;
+  outline: none;
 }

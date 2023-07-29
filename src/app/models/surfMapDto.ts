@@ -3,7 +3,8 @@ export class SurfMapDto {
     public name: string,
     public server: string,
     public imageSrc: string,
-    public tier: number,
+    public tier: string,
+    public style: string,
     public status: number,
     public player: string
   ) {}

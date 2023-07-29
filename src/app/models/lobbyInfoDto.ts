@@ -6,6 +6,9 @@ export class LobbyInfoDto {
     public mapsInLobby: SurfMapDto[],
     public stage: number,
     public player1: string,
-    public player2: string
+    public player2: string,
+    public isPlayer1WantReroll: boolean,
+    public isPlayer2WantReroll: boolean,
+    public rerollable: boolean
   ) {}
 }
