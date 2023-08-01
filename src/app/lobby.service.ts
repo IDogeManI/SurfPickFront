@@ -10,9 +10,9 @@ import { map, mergeMap, retryWhen, timeout, timer } from 'rxjs';
   providedIn: 'root',
 })
 export class LobbyService {
-  private url: string = 'https://localhost:7119/api/lobby';
-  public imageUrl: string = 'https://localhost:7119/api/map/';
-  public predicateUrl: string = 'https://localhost:7119/api/predicates';
+  private url: string = 'http://194.67.121.200/api/lobby';
+  public imageUrl: string = 'http://194.67.121.200/api/map/';
+  public predicateUrl: string = 'http://194.67.121.200/api/predicates';
   public tablesUrl: Map<string, string> = new Map<string, string>([
     [
       'KSF',
@@ -21,6 +21,10 @@ export class LobbyService {
     [
       'Cybershoke',
       'https://docs.google.com/spreadsheets/d/1i31E07f_UEwQWGkC02H2kl6IekgpoyKQV5ebmA3FChw',
+    ],
+    [
+      'Cybershoke Bonuses',
+      'https://docs.google.com/spreadsheets/d/1X3JaAgn_Q05FK46X_FNe-XLEFYjo-muBQ2WrAnsg0Hc',
     ],
   ]);
   public showLobby: boolean = false;

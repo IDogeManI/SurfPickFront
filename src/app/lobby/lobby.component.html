@@ -32,7 +32,8 @@
         lobby.lobbyId}}</p>
     </div>
   </div>
-  <button class="c-button" (click)="showLinks = true" *ngIf="showLinks==false">Show
+  <button class="c-button" (click)="showLinks = true"
+    *ngIf="showLinks==false&&lobby.id==undefined">Show
     Links</button>
   <button class="c-button" (click)="showLinks = false" *ngIf="showLinks==true">Hide
     Links</button>

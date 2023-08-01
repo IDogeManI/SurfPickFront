@@ -5,7 +5,7 @@
   justify-content: space-evenly;
 }
 .container {
-  min-width: 400px;
+  min-width: 300px;
   max-width: 50%;
   height: fit-content;
   margin: 20px 20px;
@@ -14,10 +14,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: justify;
   background-color: map-get($map: $colors, $key: "secondary");
   border-radius: 5px;
   font-weight: bold;
   font-size: 1rem;
+  p {
+    margin: 5px 0px;
+  }
 }
 .buttons {
   display: flex;

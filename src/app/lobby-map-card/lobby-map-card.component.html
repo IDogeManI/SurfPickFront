@@ -2,10 +2,10 @@
   <h2 class="name">{{map.name}}</h2>
   <div class="image">
     <div class="banned" *ngIf="map.status == 1">Banned <small>
-        {{map.player!=""?map.player:''}}</small></div>
+        {{map.player!=""?"by "+map.player:''}}</small></div>
     <div class="picked" *ngIf="map.status == 2">Picked
       <small>
-        {{map.player!=""?map.player:''}}</small></div>
+        {{map.player!=""?"by "+map.player:''}}</small></div>
     <div class="decider" *ngIf="map.status == 3">Decider</div>
     <img [src]="lobby.imageUrl+map.imageSrc">
   </div>
